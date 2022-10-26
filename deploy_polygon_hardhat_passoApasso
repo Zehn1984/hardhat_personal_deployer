@@ -1,0 +1,48 @@
+***instalando, configurando e deployando contrato na rede oficial do polygon com hardhat e JS***
+
+Fontes: 
+https://www.youtube.com/watch?v=ajxSYMYcPuI
+https://www.youtube.com/watch?v=h05-TkWPCvA&t
+https://www.youtube.com/watch?v=iM8AcSpIZGo&t
+https://hardhat.org/hardhat-runner/docs/getting-started#overview
+https://docs.polygon.technology/docs/develop/hardhat/
+##################################################
+https://docs.openzeppelin.com/contracts/4.x/wizard
+##################################################
+
+requerimentos: nodejs
+
+Criar uma pasta para o projeto, abrir terminal na mesma e digitar os comandos a seguir:
+
+npm init // apertar enter até acabar
+
+npm install --save-dev hardhat
+
+npx hardhat // apertar enter até acabar
+
+code . // para abrir o visual code na pasta
+
+// coloque o contrato na pasta "contracts" criada, e depois no terminal digite:
+
+npx hardhat node // vai criar uma blockchain local com varias contas, assim como ganache, porem muito mais rapido, para testar rapidamente o contrato.
+
+npx hardhat run scripts/deploy.js --network localhost // testa o contrato usando o script de deploy basico que fica dentro da pasta "scripts" do hardhat. Pode-se usar outros scripts da comunidade, e da paste "test".
+
+npx hardhat console --network localhost // abre o console para testar as funcoes do contrato deployado.
+
+npm install dotenv --save
+
+npm install @nomiclabs/hardhat-etherscan
+
+npm install @nomiclabs/hardhat-waffle
+
+npm install @nomiclabs/hardhat-ethers ethers chai
+
+###############################################################
+
+npx hardhat compile // este comando compila os contratos existentes na pasta "contracts" e gera os artifacts e cache
+
+npx hardhat run scripts/deploy.js --network matic // faz o deploy do contrato na rede matic, que foi configurada dentro do arquivo hardhat.config.js
+
+npx hardhat verify --network matic 0x0530A194462Bc3F7994cb0FE322745709c54C234 // substitua o endereço acima pelo endereço gerado no deploy. Deve-se passar os argumentos do constructor dessa maneira.
+
