@@ -40,11 +40,15 @@ npm install @nomiclabs/hardhat-ethers ethers chai
 
 ###############################################################
 
-// Apos instalacao de todas as dependencias acima, basta rodar o codigo abaixo para deployar e verificar o contrato
+// ATENCAO: Caso so tenha baixado o repositorio, executar os passos abaixo para verificar contrato na polygonscan:
+
+criar um arquivo .env com o seguinte conteudo:
+ALCHEMY_RPC_URL=https://polygon-mainnet.g.alchemy.com/v2/Znu7zBP5e1DQBrXtYdJuvMx8sm4AEvYx
+PRIVATE_KEY=pegar private key da metamask clicando nos tres pontinhos, account details e colar aqui
+POLYGONSCAN_API_KEY=NE394TZFZXB4NR1B7PMF2CN3IVH6ST878M
 
 npx hardhat compile // este comando compila os contratos existentes na pasta "contracts" e gera os artifacts e cache
 
 npx hardhat run scripts/deploy.js --network matic // faz o deploy do contrato na rede matic, que foi configurada dentro do arquivo hardhat.config.js
 
-npx hardhat verify --network matic 0x0530A194462Bc3F7994cb0FE322745709c54C234 // substitua o endereço acima pelo endereço gerado no deploy. Deve-se passar os argumentos do constructor dessa maneira.
-
+npx hardhat verify --network matic 0x1190bcB2A62C1a4F390271BF4882157C83F62072 // substitua o endereço pelo endereço gerado no deploy. Deve-se passar os argumentos do constructor dessa maneira.

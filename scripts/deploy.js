@@ -15,12 +15,12 @@ async function main() {
   const lockedAmount = hre.ethers.utils.parseEther("1");
   */
 
-  const TOKEN = await hre.ethers.getContractFactory("CarteirinhaNFT");
+  const TOKEN = await hre.ethers.getContractFactory("TesteUsuario");
   const token = await TOKEN.deploy();
 
   await token.deployed();
 
-  console.log("CarteirinhaNFT deployed to:", token.address);
+  console.log("TesteUsuario deployed to:", token.address);
 }
 
 // We recommend this pattern to be able to use async/await everywhere
