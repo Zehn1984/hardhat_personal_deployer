@@ -40,6 +40,8 @@ npm install @nomiclabs/hardhat-ethers ethers chai
 
 ###############################################################
 
+// Apos instalacao de todas as dependencias acima, basta rodar o codigo abaixo para deployar e verificar o contrato
+
 npx hardhat compile // este comando compila os contratos existentes na pasta "contracts" e gera os artifacts e cache
 
 npx hardhat run scripts/deploy.js --network matic // faz o deploy do contrato na rede matic, que foi configurada dentro do arquivo hardhat.config.js

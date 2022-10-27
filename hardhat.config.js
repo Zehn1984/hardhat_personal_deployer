@@ -11,12 +11,7 @@ module.exports = {
     matic: {
       url: process.env.ALCHEMY_RPC_URL,
       accounts: [process.env.PRIVATE_KEY]
-    },
-    mumbai: {
-      url: process.env.MUMBAI_RPC_URL,
-      accounts: [process.env.PRIVATE_KEY]
-    }
-    
+    },    
   },
   etherscan: {
     apiKey: process.env.POLYGONSCAN_API_KEY
