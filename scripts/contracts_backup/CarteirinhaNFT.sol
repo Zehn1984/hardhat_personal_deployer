@@ -1,15 +1,13 @@
 // SPDX-License-Identifier: MIT
-
 pragma solidity 0.8.4;
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
-import "@openzeppelin/contracts/security/Pausable.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 
 /// @custom:security-contact andersoncampolina1@gmail.com
-contract CarteirinhaNFT is ERC721, ERC721Enumerable, Pausable, Ownable {
+contract CarteirinhaNFT is ERC721, ERC721Enumerable, Ownable {
     using Counters for Counters.Counter;
 
     Counters.Counter private _tokenIdCounter;
@@ -18,7 +16,7 @@ contract CarteirinhaNFT is ERC721, ERC721Enumerable, Pausable, Ownable {
 
     // Mapping owner address to Historico[]
     mapping(address => Historico[]) private _historico;
-    // creates an object array for dinamic historical data
+    // cria array/objeto historico
     struct Historico {
         string nomeConquista;
         uint128 dataConquista;
@@ -35,29 +33,21 @@ contract CarteirinhaNFT is ERC721, ERC721Enumerable, Pausable, Ownable {
         return historico;
     }
 
-    function pause() public onlyOwner {
-        _pause();
-    }
-
-    function unpause() public onlyOwner {
-        _unpause();
-    }
-
     function safeMint(address to) public onlyOwner {
+        //require(_tokenIdCounter.current() < 1);
         uint256 tokenId = _tokenIdCounter.current();
         _tokenIdCounter.increment();
         _safeMint(to, tokenId);
     }
 
+    // The following functions are overrides required by Solidity.
+
     function _beforeTokenTransfer(address from, address to, uint256 tokenId)
         internal
-        whenNotPaused
         override(ERC721, ERC721Enumerable)
     {
         super._beforeTokenTransfer(from, to, tokenId);
     }
-
-    // The following functions are overrides required by Solidity.
 
     function supportsInterface(bytes4 interfaceId)
         public

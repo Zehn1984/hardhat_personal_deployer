@@ -51,4 +51,8 @@ npx hardhat compile // este comando compila os contratos existentes na pasta "co
 
 npx hardhat run scripts/deploy.js --network matic // faz o deploy do contrato na rede matic, que foi configurada dentro do arquivo hardhat.config.js
 
-npx hardhat verify --network matic 0x1190bcB2A62C1a4F390271BF4882157C83F62072 // substitua o endereço pelo endereço gerado no deploy. Deve-se passar os argumentos do constructor dessa maneira.
+npx hardhat verify --network matic 0x8b33781cB4dEa1AbC3Dc49A382F75e4c09FD7516 // substitua o endereço pelo endereço gerado no deploy. Deve-se passar os argumentos do constructor dessa maneira.
+
+###################
+
+https://polygonscan.com/address/0x8b33781cB4dEa1AbC3Dc49A382F75e4c09FD7516#code
