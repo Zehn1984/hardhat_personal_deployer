@@ -33,23 +33,23 @@ async function main() {
   const idConquista = 001;
 
 
-  let maxTry = 3
-  let multiply = 1;
-
+  let maxTry = 3 // máximo de tentativas permitidas
+  let multiply = 1; // multiplicador de tempo, que aumenta a cada erro gerado
+  let breakLoop = false;
   for(let i = 0; i < conquistas.length && maxTry; i++) {
-    const conquistaAtual = conquistas[i]
-    const {nomeConquista, dataCriadoBlockchain, idConquista} = conquistaAtual
+    const { nomeConquista, dataCriadoBlockchain, idConquista } = conquistas[i]
     setTimeout( async () => {
-      if (maxTry > 0) {
+      if (maxTry > 0 && !breakLoop) {
         try {
-          const a = await token.adicionarConquistaHistorico(nomeConquista, dataCriadoBlockchain, idConquista);
-          console.log(await a.wait())
+          await token.adicionarConquistaHistorico(nomeConquista, dataCriadoBlockchain, idConquista);
+          throw new Error();
         } catch (err) {
           multiply = multiply * 1.50
           maxTry--
         }
       } else {
-        i = conquistas.length + 1 
+        breakLoop = true // Terminamos a execução do loop
+        console.log("Alcançou o máximo de tentativas permitidas, tente adicionar as conquistas manualmente")
       }
     }, 1000 * i * multiply)
   }
