@@ -32,46 +32,41 @@ async function main() {
   const dataConquista = 29102022;
   const idConquista = 001;
 
-  let maxTry = conquistas.length / 2
-  let index = 0
-  let time = 0
 
-  // while(index <= conquistas.length || maxTry > 0) {
-  //   console.log(i)
-  //   const {nomeConquista, dataCriadoBlockchain, idConquista} = conquistas[index];
+  let maxTry = 3
+  let multiply = 1;
+
+  for(let i = 0; i < conquistas.length && maxTry; i++) {
+    const conquistaAtual = conquistas[i]
+    const {nomeConquista, dataCriadoBlockchain, idConquista} = conquistaAtual
+    setTimeout( async () => {
+      if (maxTry > 0) {
+        try {
+          const a = await token.adicionarConquistaHistorico(nomeConquista, dataCriadoBlockchain, idConquista);
+          console.log(await a.wait())
+        } catch (err) {
+          multiply = multiply * 1.50
+          maxTry--
+        }
+      } else {
+        i = conquistas.length + 1 
+      }
+    }, 1000 * i * multiply)
+  }
+
+          
+  console.log("Terminou")
+  //passos: fazer deploy, fazer mint, adicionar todas as conquistas (buscar do banco de dados e fazer loop para adicionar uma a uma), e por fim, fazer transferencia para carteira do jimmy
+  // conquistas.map( async (conquista, i) => {
+  //   const {nomeConquista, dataCriadoBlockchain, idConquista} = conquista
   //   setTimeout(async () => {
   //     try {
-  //       const gravarConquista = await token.adicionarConquistaHistorico(nomeConquista, dataCriadoBlockchain, idConquista);
-  //       const waitResponse = await gravarConquista.wait()
-  //       //if (!gravarConquista) throw new Error()
-  //       console.log(waitResponse)
-  //       index++
-  //       time++
-  //       console.log("DEU CERTO")
+       
   //     } catch (err) {
-  //       maxTry--
-  //       time = time * 2
-  //       console.log("ERROR")
-  //       if (maxTry === 0) {
-  //         index = conquistas.length + 1
-  //         console.log("Não fo possivel gravar as conquistas")
-  //       }
-  //     }
-  //   }, 1000 * time)
-  // }
-
-  //passos: fazer deploy, fazer mint, adicionar todas as conquistas (buscar do banco de dados e fazer loop para adicionar uma a uma), e por fim, fazer transferencia para carteira do jimmy
-  conquistas.map( async (conquista, i) => {
-    const {nomeConquista, dataCriadoBlockchain, idConquista} = conquista
-    setTimeout(async () => {
-      try {
-        const a = await token.adicionarConquistaHistorico(nomeConquista, dataCriadoBlockchain, idConquista);
-        console.log(await a.wait())
-      } catch (err) {
-        console.log(i)
-      } 
-    }, 1000 * i)
-  })
+  //       console.log(i)
+  //     } 
+  //   }, 1000 * i)
+  // })
 }
 
 // We recommend this pattern to be able to use async/await everywhere
