@@ -7,12 +7,13 @@ async function main() {
   const token = await TOKEN.deploy();
 
   await token.deployed();
+  //console.log(token);
 
   console.log("CarteirinhaNFT deployed to:", token.address);
-  //console.log(token);
 
   owner_wallet = await token.owner();
   console.log("Owner Wallet:", owner_wallet);
+
   await token.safeMint(owner_wallet);
   
   const nomeConquista = "bola_automatica";

@@ -8,12 +8,19 @@ module.exports = {
   networks: {
     hardhat: {
     },
+    // Matic Mainnet
     matic: {
-      url: process.env.ALCHEMY_RPC_URL,
+      url: process.env.MATIC_MAINNET_ALCHEMY_RPC_URL,
       accounts: [process.env.PRIVATE_KEY]
-    },    
+    },
+    // Matic Testnet
+    mumbai: {
+      url: process.env.MATIC_TESTNET_ALCHEMY_RPC_URL,
+      accounts: [process.env.PRIVATE_KEY]
+    },        
   },
   etherscan: {
+    // eh a mesma key para mainnet e testnet
     apiKey: process.env.POLYGONSCAN_API_KEY
   },
   solidity: {
