@@ -19,6 +19,8 @@ async function main() {
   const dataConquista = 29102022;
   const idConquista = 001;
 
+  // passos: fazer deploy, fazer mint, adicionar todas as conquistas (buscar do banco de dados e fazer loop para adicionar uma a uma), e por fim, fazer transferencia para carteira do jimmy
+
   await token.adicionarConquistaHistorico(nomeConquista, dataConquista, idConquista);
 }
 
