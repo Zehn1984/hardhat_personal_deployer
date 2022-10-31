@@ -61,7 +61,7 @@ async function main() {
   // }
 
   //passos: fazer deploy, fazer mint, adicionar todas as conquistas (buscar do banco de dados e fazer loop para adicionar uma a uma), e por fim, fazer transferencia para carteira do jimmy
-  const qwe = conquistas.map( async (conquista, i) => {
+  conquistas.map( async (conquista, i) => {
     const {nomeConquista, dataCriadoBlockchain, idConquista} = conquista
     setTimeout(async () => {
       try {
