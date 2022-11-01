@@ -1,6 +1,5 @@
-const { SignerWithAddress } = require("@nomiclabs/hardhat-ethers/signers");
-const hre = require("hardhat");
 
+const hre = require("hardhat");
 
 const conquistas =[
   {nomeConquista: "a", idConquista: 1, dataCriadoBlockchain: 11101984},
@@ -28,45 +27,29 @@ async function main() {
 
   await token.safeMint(owner_wallet);
   
-  const nomeConquista = "bola_automatica";
-  const dataConquista = 29102022;
-  const idConquista = 001;
+  let maxTry = 3
+  let multiply = 1;
 
-
-  let maxTry = 3 // máximo de tentativas permitidas
-  let multiply = 1; // multiplicador de tempo, que aumenta a cada erro gerado
-  let breakLoop = false;
   for(let i = 0; i < conquistas.length && maxTry; i++) {
-    const { nomeConquista, dataCriadoBlockchain, idConquista } = conquistas[i]
+    const conquistaAtual = conquistas[i]
+    const {nomeConquista, dataCriadoBlockchain, idConquista} = conquistaAtual
     setTimeout( async () => {
-      if (maxTry > 0 && !breakLoop) {
+      if (maxTry > 0) {
         try {
-          await token.adicionarConquistaHistorico(nomeConquista, dataCriadoBlockchain, idConquista);
-          throw new Error();
+          const gravarConquista = await token.adicionarConquistaHistorico(nomeConquista, dataCriadoBlockchain, idConquista);
+          const conquistaDeployada = await gravarConquista.wait()
+          console.log(conquistaDeployada.transactionHash)
         } catch (err) {
-          multiply = multiply * 1.50
-          maxTry--
+          multiply = multiply * 1.50;
+          maxTry--;
         }
       } else {
-        breakLoop = true // Terminamos a execução do loop
-        console.log("Alcançou o máximo de tentativas permitidas, tente adicionar as conquistas manualmente")
+        i = conquistas.length + 1 
       }
     }, 1000 * i * multiply)
   }
 
-          
-  console.log("Terminou")
-  //passos: fazer deploy, fazer mint, adicionar todas as conquistas (buscar do banco de dados e fazer loop para adicionar uma a uma), e por fim, fazer transferencia para carteira do jimmy
-  // conquistas.map( async (conquista, i) => {
-  //   const {nomeConquista, dataCriadoBlockchain, idConquista} = conquista
-  //   setTimeout(async () => {
-  //     try {
-       
-  //     } catch (err) {
-  //       console.log(i)
-  //     } 
-  //   }, 1000 * i)
-  // })
+  console.log("TxHash das conquistas abaixo:")
 }
 
 // We recommend this pattern to be able to use async/await everywhere
