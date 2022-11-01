@@ -4,7 +4,7 @@ require("@nomiclabs/hardhat-etherscan");
 require("@nomiclabs/hardhat-waffle");
 
 module.exports = {
-  defaultNetwork: "matic",
+  defaultNetwork: "mumbai",
   networks: {
     hardhat: {
     },
