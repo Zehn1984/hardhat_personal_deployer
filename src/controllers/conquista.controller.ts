@@ -8,7 +8,6 @@ export class Controller {
   
   async cadastrarConquistas() {
     const conquistasCadastradas = await main();
-    console.log(conquistasCadastradas)
     return this.res.status(200).json(conquistasCadastradas)
   }
 }

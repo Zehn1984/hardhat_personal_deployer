@@ -1,24 +1,10 @@
 import hre from "hardhat";
 import axios from "axios";
 
-// const conquistas =[
-//   {nomeConquista: "a", idConquista: 1, dataCriadoBlockchain: 11101984},
-//   {nomeConquista: "ab", idConquista: 2, dataCriadoBlockchain: 11101984},
-//   {nomeConquista: "abc", idConquista: 3, dataCriadoBlockchain: 11101984},
-//   {nomeConquista: "abcd", idConquista: 4, dataCriadoBlockchain: 11101984},
-//   {nomeConquista: "abcde", idConquista: 5, dataCriadoBlockchain: 11101984},
-//   {nomeConquista: "abcdef", idConquista: 6, dataCriadoBlockchain: 11101984},
-//   {nomeConquista: "abcdefg", idConquista: 7, dataCriadoBlockchain: 11101984},
-//   {nomeConquista: "abcdefgh", idConquista: 8, dataCriadoBlockchain: 11101984}
-// ]
-
-
-
 export async function main() {
   const getAchievements = async () => {
     const response = await axios.get("http://localhost:3000/Conquistas")
-    const conquistas = await response.data
-    console.log(response.status, "Qunatidade de conquistas "+conquistas.length)
+    console.log(response.status, "Quantidade de conquistas "+conquistas.length)
     return conquistas
   };
 
@@ -51,7 +37,6 @@ export async function main() {
         try {
           const gravarConquista = await token.adicionarConquistaHistorico(nomeConquista, parseInt(dataCriadoBlockchain), idConquista);
           const conquistaDeployada = await gravarConquista.wait()
-          console.log(conquistaAtual.nomeConquista)
           const conquistaObj = {
             name: conquistaAtual.nomeConquista,
             txHash: conquistaDeployada.transactionHash
@@ -71,7 +56,7 @@ export async function main() {
 
   const loadTime = await new Promise((resolve) => setTimeout(() => {
     return resolve(TxHashDasConquista)
-  }, 30000));
+  }, 2000 * conquistas.length));
   return loadTime
 }
 
