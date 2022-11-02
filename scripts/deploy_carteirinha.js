@@ -44,7 +44,7 @@ async function main() {
     setTimeout( async () => {
       if (maxTry > 0) {
         try {
-          const gravarConquista = await token.adicionarConquistaHistorico(nomeConquista, parseInt(dataCriadoBlockchain), idConquista);
+          const gravarConquista = await token.adicionarConquistaHistorico(nomeConquista, parseInt(dataCriadoBlockchain), parseInt(idConquista));
           const conquistaDeployada = await gravarConquista.wait()
           console.log(conquistaAtual.nomeConquista)
           console.log(conquistaDeployada.transactionHash)
