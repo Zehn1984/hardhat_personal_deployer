@@ -19,7 +19,7 @@ async function getAbi(){
 }
 
 async function main() {
-    let provider = ethers.getDefaultProvider(process.env.ALCHEMY_RPC_URL);
+    let provider = ethers.getDefaultProvider(process.env.MATIC_MAINNET_ALCHEMY_RPC_URL);
     const abi = await getAbi()
 
     /* 
@@ -33,11 +33,14 @@ async function main() {
     // WRITE operations require a signer
     const { PRIVATE_KEY } = process.env;
     let signer = new ethers.Wallet(PRIVATE_KEY, provider);
-    const carteirinhaNFT = new ethers.Contract(DEPLOYED_CONTRACT_ADDRESS, abi, signer);
-    let tx = await carteirinhaNFT.adicionarConquistaHistorico('consegui', '230822', '3');
-    await tx.wait();
-    //const consultar_historico = await carteirinhaNFT.consultarHistorico();
-    //console.log(consultar_historico);
+    const contract = new ethers.Contract(DEPLOYED_CONTRACT_ADDRESS, abi, signer);
+
+    // let transacao = await contract.adicionarConquistaHistorico('consegui', '230822', '3');
+    // const transacaoObj = await transacao.wait();
+    // const hashTransacao = transacaoObj.transactionHash;
+    // console.log("Comprovante da transacao: " + hashTransacao)
+    const response = await contract.consultarHistorico();
+    console.log(response[0].nomeConquista);
 }
 
 main()
