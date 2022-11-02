@@ -5,9 +5,9 @@ const fs = require('fs');
 const conquistas =[
   // {nomeConquista: "bola", idConquista: "001", dataCriadoBlockchain: "11101984"}
 
-  {nomeConquista: "[a, akjjd, ksajdakdjkajsd, askldjaskjdkajsdja, asldkaskldjlasdkja, askdaskdj, asdkjaskdjaskdjalskdjalksdj, aksjdjk, dsjklj], [asdhasdhjasd, asdjaskjasdk, jhkd, kjasdajksdkjasdkasdkj, kjsd]", idConquista: "[1, 2, 3, 4, 5, 6, 7, 8, 9], [10, 11, 12, 13, 14]", dataCriadoBlockchain: "[11101984, 11101984, 11101984, 11101984, 11101984, 11101984, 11101984, 11101984, 11101984], [11101984, 11101984, 11101984, 11101984, 11101984]"},
-  {nomeConquista: "[a, akjjd, ksajdakdjkajsd, askldjaskjdkajsdja, asldkaskldjlasdkja, askdaskdj, asdkjaskdjaskdjalskdjalksdj, aksjdjk, dsjklj], [asdhasdhjasd, asdjaskjasdk, jhkd, kjasdajksdkjasdkasdkj, kjsd]", idConquista: "[1, 2, 3, 4, 5, 6, 7, 8, 9], [10, 11, 12, 13, 14]", dataCriadoBlockchain: "[11101984, 11101984, 11101984, 11101984, 11101984, 11101984, 11101984, 11101984, 11101984], [11101984, 11101984, 11101984, 11101984, 11101984]"},
-  {nomeConquista: "[a, akjjd, ksajdakdjkajsd, askldjaskjdkajsdja, asldkaskldjlasdkja, askdaskdj, asdkjaskdjaskdjalskdjalksdj, aksjdjk, dsjklj], [asdhasdhjasd, asdjaskjasdk, jhkd, kjasdajksdkjasdkasdkj, kjsd]", idConquista: "[1, 2, 3, 4, 5, 6, 7, 8, 9], [10, 11, 12, 13, 14]", dataCriadoBlockchain: "[11101984, 11101984, 11101984, 11101984, 11101984, 11101984, 11101984, 11101984, 11101984], [11101984, 11101984, 11101984, 11101984, 11101984]"}
+  {nomeConquista: "[a,akjjd,ksajdakdjkajsd,askldjaskjdkajsdja,asldkaskldjlasdkja,askdaskdj,asdkjaskdjaskdjalskdjalksdj,aksjdjk,dsjklj]-[asdhasdhjasd,asdjaskjasdk,jhkd,kjasdajksdkjasdkasdkj,kjsd]", idConquista: "[1,2,3,4,5,6,7,8,9]-[10,11,12,13,14]", dataCriadoBlockchain: "[11101984,11101984,11101984,11101984,11101984,11101984,11101984,11101984,11101984]-[11101984,11101984,11101984,11101984,11101984]"},
+  {nomeConquista: "[a,akjjd,ksajdakdjkajsd,askldjaskjdkajsdja,asldkaskldjlasdkja,askdaskdj,asdkjaskdjaskdjalskdjalksdj,aksjdjk,dsjklj]-[asdhasdhjasd,asdjaskjasdk,jhkd,kjasdajksdkjasdkasdkj,kjsd]", idConquista: "[1,2,3,4,5,6,7,8,9]-[10,11,12,13,14]", dataCriadoBlockchain: "[11101984,11101984,11101984,11101984,11101984,11101984,11101984,11101984,11101984]-[11101984,11101984,11101984,11101984,11101984]"},
+  {nomeConquista: "[a,akjjd,ksajdakdjkajsd,askldjaskjdkajsdja,asldkaskldjlasdkja,askdaskdj,asdkjaskdjaskdjalskdjalksdj,aksjdjk,dsjklj]-[asdhasdhjasd,asdjaskjasdk,jhkd,kjasdajksdkjasdkasdkj,kjsd]", idConquista: "[1,2,3,4,5,6,7,8,9]-[10,11,12,13,14]", dataCriadoBlockchain: "[11101984,11101984,11101984,11101984,11101984,11101984,11101984,11101984,11101984]-[11101984,11101984,11101984,11101984,11101984]"}
 
 ]
 
@@ -27,7 +27,7 @@ async function main() {
   await token.deployed();
   //console.log(token);
 
-  const tokenAddress = token.address + ", ";
+  const tokenAddress = "," + token.address;
   console.log("CarteirinhaV2 deployed to:", tokenAddress);
 
 

@@ -43,8 +43,9 @@ npm install @nomiclabs/hardhat-ethers ethers chai
 // ATENCAO: Caso so tenha baixado o repositorio, executar os passos abaixo para verificar contrato na polygonscan:
 
 criar um arquivo .env com o seguinte conteudo:
-ALCHEMY_RPC_URL=https://polygon-mainnet.g.alchemy.com/v2/Znu7zBP5e1DQBrXtYdJuvMx8sm4AEvYx
-PRIVATE_KEY=pegar private key da metamask clicando nos tres pontinhos, account details e colar aqui
+MATIC_MAINNET_ALCHEMY_RPC_URL=https://polygon-mainnet.g.alchemy.com/v2/Znu7zBP5e1DQBrXtYdJuvMx8sm4AEvYx
+MATIC_TESTNET_ALCHEMY_RPC_URL=https://cosmopolitan-thrumming-sailboat.matic-testnet.discover.quiknode.pro/da6659e79d0fdc4e52121547c3bd9394cc611eb0/
+PRIVATE_KEY=METAMASK_PRIVATE_KEY
 POLYGONSCAN_API_KEY=NE394TZFZXB4NR1B7PMF2CN3IVH6ST878M
 
 npx hardhat compile // este comando compila os contratos existentes na pasta "contracts" e gera os artifacts e cache
