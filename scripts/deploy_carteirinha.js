@@ -24,7 +24,7 @@ export async function main() {
   let maxTry = 3
   let multiply = 1;
   let awaitToResponse = 0
-  const TxHashDasConquista: any = [];
+  const TxHashDasConquista = [];
 
 
   for(let i = 0; i < conquistas.length && maxTry; i++) {
