@@ -4,6 +4,7 @@ import axios from "axios";
 export async function main() {
   const getAchievements = async () => {
     const response = await axios.get("http://localhost:3000/Conquistas")
+    console.log(response.status, "Quantidade de conquistas "+conquistas.length)
     return conquistas
   };
 
@@ -24,7 +25,7 @@ export async function main() {
   let maxTry = 3
   let multiply = 1;
   let awaitToResponse = 0
-  const TxHashDasConquista = [];
+  const TxHashDasConquista: any = [];
 
 
   for(let i = 0; i < conquistas.length && maxTry; i++) {
@@ -34,7 +35,7 @@ export async function main() {
     setTimeout( async () => {
       if (maxTry > 0) {
         try {
-          const gravarConquista = await token.adicionarConquistaHistorico(nomeConquista, parseInt(dataCriadoBlockchain), parseInt(idConquista));
+          const gravarConquista = await token.adicionarConquistaHistorico(nomeConquista, parseInt(dataCriadoBlockchain), idConquista);
           const conquistaDeployada = await gravarConquista.wait()
           const conquistaObj = {
             name: conquistaAtual.nomeConquista,
@@ -55,7 +56,7 @@ export async function main() {
 
   const loadTime = await new Promise((resolve) => setTimeout(() => {
     return resolve(TxHashDasConquista)
-  }, 2000 * awaitToResponse));
+  }, 2000 * conquistas.length));
   return loadTime
 }
 
