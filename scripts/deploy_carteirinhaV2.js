@@ -1,26 +1,26 @@
 const hre = require("hardhat");
 const fs = require('fs');
-//const axios = require("axios");
+const axios = require("axios");
 
-const conquistas =[
-  // {nomeConquista: "bola", idConquista: "001", dataCriadoBlockchain: "11101984"}
+// const conquistas =[
+//   // {nomeConquista: "bola", idConquista: "001", dataCriadoBlockchain: "11101984"}
 
-  {nomeConquista: "[a,akjjd,ksajdakdjkajsd,askldjaskjdkajsdja,asldkaskldjlasdkja,askdaskdj,asdkjaskdjaskdjalskdjalksdj,aksjdjk,dsjklj]-[asdhasdhjasd,asdjaskjasdk,jhkd,kjasdajksdkjasdkasdkj,kjsd]", idConquista: "[1,2,3,4,5,6,7,8,9]-[10,11,12,13,14]", dataCriadoBlockchain: "[11101984,11101984,11101984,11101984,11101984,11101984,11101984,11101984,11101984]-[11101984,11101984,11101984,11101984,11101984]"},
-  {nomeConquista: "[a,akjjd,ksajdakdjkajsd,askldjaskjdkajsdja,asldkaskldjlasdkja,askdaskdj,asdkjaskdjaskdjalskdjalksdj,aksjdjk,dsjklj]-[asdhasdhjasd,asdjaskjasdk,jhkd,kjasdajksdkjasdkasdkj,kjsd]", idConquista: "[1,2,3,4,5,6,7,8,9]-[10,11,12,13,14]", dataCriadoBlockchain: "[11101984,11101984,11101984,11101984,11101984,11101984,11101984,11101984,11101984]-[11101984,11101984,11101984,11101984,11101984]"},
-  {nomeConquista: "[a,akjjd,ksajdakdjkajsd,askldjaskjdkajsdja,asldkaskldjlasdkja,askdaskdj,asdkjaskdjaskdjalskdjalksdj,aksjdjk,dsjklj]-[asdhasdhjasd,asdjaskjasdk,jhkd,kjasdajksdkjasdkasdkj,kjsd]", idConquista: "[1,2,3,4,5,6,7,8,9]-[10,11,12,13,14]", dataCriadoBlockchain: "[11101984,11101984,11101984,11101984,11101984,11101984,11101984,11101984,11101984]-[11101984,11101984,11101984,11101984,11101984]"}
+//   {nomeConquista: "[a,akjjd,ksajdakdjkajsd,askldjaskjdkajsdja,asldkaskldjlasdkja,askdaskdj,asdkjaskdjaskdjalskdjalksdj,aksjdjk,dsjklj]-[asdhasdhjasd,asdjaskjasdk,jhkd,kjasdajksdkjasdkasdkj,kjsd]", idConquista: "[1,2,3,4,5,6,7,8,9]-[10,11,12,13,14]", dataCriadoBlockchain: "[11101984,11101984,11101984,11101984,11101984,11101984,11101984,11101984,11101984]-[11101984,11101984,11101984,11101984,11101984]"},
+//   {nomeConquista: "[a,akjjd,ksajdakdjkajsd,askldjaskjdkajsdja,asldkaskldjlasdkja,askdaskdj,asdkjaskdjaskdjalskdjalksdj,aksjdjk,dsjklj]-[asdhasdhjasd,asdjaskjasdk,jhkd,kjasdajksdkjasdkasdkj,kjsd]", idConquista: "[1,2,3,4,5,6,7,8,9]-[10,11,12,13,14]", dataCriadoBlockchain: "[11101984,11101984,11101984,11101984,11101984,11101984,11101984,11101984,11101984]-[11101984,11101984,11101984,11101984,11101984]"},
+//   {nomeConquista: "[a,akjjd,ksajdakdjkajsd,askldjaskjdkajsdja,asldkaskldjlasdkja,askdaskdj,asdkjaskdjaskdjalskdjalksdj,aksjdjk,dsjklj]-[asdhasdhjasd,asdjaskjasdk,jhkd,kjasdajksdkjasdkasdkj,kjsd]", idConquista: "[1,2,3,4,5,6,7,8,9]-[10,11,12,13,14]", dataCriadoBlockchain: "[11101984,11101984,11101984,11101984,11101984,11101984,11101984,11101984,11101984]-[11101984,11101984,11101984,11101984,11101984]"}
 
-]
+// ]
 
 // const getAchievements = async () => {
 //   const response = await axios.get("http://localhost:3000/Conquistas")
 //   const conquistas = await response.data
-//   console.log(response.status, "Qunatidade de conquistas "+conquistas.length)
+//   console.log(response.status, "Quantidade de conquistas "+ conquistas.length)
 //   return conquistas
 // };
 
 async function main() {
 
-  //const conquistas = await getAchievements();
+  const conquistas = await getAchievements();
   const TOKEN = await hre.ethers.getContractFactory("CarteirinhaV2");
   const token = await TOKEN.deploy();
 

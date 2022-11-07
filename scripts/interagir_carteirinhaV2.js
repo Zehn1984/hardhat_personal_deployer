@@ -35,11 +35,6 @@ async function main() {
     const last_contract_deployed_address = await getLastContractDeployedAddress();
     const token = new ethers.Contract(last_contract_deployed_address, abi, signer);
 
-    // let transacao = await token.adicionarConquistaHistorico("consegui", "23081984", "3");
-    // const transacaoObj = await transacao.wait();
-    // const hashTransacao = transacaoObj.transactionHash;
-    // console.log("Comprovante da transacao: " + hashTransacao);
-    
     const response = await token.consultarHistorico();
 
     // Trata a string capturada do contrato para ficar no padrao JSON para ser utilizada no backend/DB
