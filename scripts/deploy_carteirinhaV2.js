@@ -12,6 +12,8 @@ const getAchievements = async () => {
 
 async function main() {
 
+  const provider = new ethers.providers.JsonRpcProvider(process.env.MATIC_TESTNET_ALCHEMY_RPC_URL)
+
   const TOKEN = await hre.ethers.getContractFactory("CarteirinhaV2");
   const token = await TOKEN.deploy();
 
@@ -73,7 +75,6 @@ async function main() {
           blockNumberConquista.push(conquistaDeployada.blockNumber)
           console.log(txHashConquista[i])
           console.log(blockNumberConquista[i])
-          const provider = new ethers.providers.JsonRpcProvider(process.env.MATIC_TESTNET_ALCHEMY_RPC_URL)
           const blocoMineirado = await provider.getBlock(blockNumberConquista[i])
           dataCriadoBlockchain.push(new Date(blocoMineirado.timestamp * 1000))
           console.log(dataCriadoBlockchain[i])
