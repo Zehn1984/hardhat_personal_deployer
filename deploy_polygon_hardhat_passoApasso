@@ -44,7 +44,10 @@ npm install @nomiclabs/hardhat-ethers ethers chai
 
 criar um arquivo .env com o seguinte conteudo:
 MATIC_MAINNET_ALCHEMY_RPC_URL=https://polygon-mainnet.g.alchemy.com/v2/Znu7zBP5e1DQBrXtYdJuvMx8sm4AEvYx
+MATIC_TESTNET_ALCHEMY_RPC_URL=https://polygon-mumbai.g.alchemy.com/v2/6SHtDtPxW4ehs5Ss5SsSslF7fIm9HV_4
+MATIC_TESTNET_ALCHEMY_RPC_URL=https://rpc.ankr.com/polygon_mumbai
 MATIC_TESTNET_ALCHEMY_RPC_URL=https://cosmopolitan-thrumming-sailboat.matic-testnet.discover.quiknode.pro/da6659e79d0fdc4e52121547c3bd9394cc611eb0/
+MATIC_TESTNET_ALCHEMY_RPC_URL=https://polygon-mumbai.g.alchemy.com/v2/h4BiiyoNPD507GCkL9HOE74qMVoQat5D
 PRIVATE_KEY=METAMASK_PRIVATE_KEY
 POLYGONSCAN_API_KEY=NE394TZFZXB4NR1B7PMF2CN3IVH6ST878M
 
