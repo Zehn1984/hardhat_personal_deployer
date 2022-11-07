@@ -37,32 +37,36 @@ async function main() {
 
     const response = await token.consultarHistorico();
 
-    // Trata a string capturada do contrato para ficar no padrao JSON para ser utilizada no backend/DB
-    async function trataConquista(tipoConquista) {
-      const ConquistaArrayStringSplit = await (response[0][tipoConquista]).split("-");
-      const ConquistaArr = [];
-      for(i=0; i<ConquistaArrayStringSplit.length; i++) {
-        ConquistaArr.push((ConquistaArrayStringSplit[i].replace("[","").replace("]","")).split(","));
-      }
-      for(i=0; i<ConquistaArr.length-1; i++) {
-        ConquistaArr2 = ConquistaArr[i].concat(ConquistaArr[i+1])
-      }
-      return ConquistaArr2;
-    }
+    //console.log(JSON.parse(response[0].nomeConquista))
+    console.log(response[0].nomeConquista)
 
-    const nomeConquistas = await trataConquista("nomeConquista");
-    const dataConquistas = await trataConquista("dataConquista");
-    const idConquistas = await trataConquista("idConquista");
 
-    const arrConquistas = []
-    for(i=0; i<nomeConquistas.length; i++) {
-      const conquistas = new Object;      
-      conquistas.nomeConquista = nomeConquistas[i];
-      conquistas.dataConquista = dataConquistas[i];
-      conquistas.idConquista = idConquistas[i];
-      arrConquistas.push(conquistas)
-    }
-    console.log(arrConquistas)
+//     // Trata a string capturada do contrato para ficar no padrao JSON para ser utilizada no backend/DB
+//     async function trataConquista(tipoConquista) {
+//       const ConquistaArrayStringSplit = await (response[0][tipoConquista]).split("-");
+//       const ConquistaArr = [];
+//       for(i=0; i<ConquistaArrayStringSplit.length; i++) {
+//         ConquistaArr.push((ConquistaArrayStringSplit[i].replace("[","").replace("]","")).split(","));
+//       }
+//       for(i=0; i<ConquistaArr.length-1; i++) {
+//         ConquistaArr2 = ConquistaArr[i].concat(ConquistaArr[i+1])
+//       }
+//       return ConquistaArr2;
+//     }
+
+//     const nomeConquistas = await trataConquista("nomeConquista");
+//     const dataConquistas = await trataConquista("dataConquista");
+//     const idConquistas = await trataConquista("idConquista");
+
+//     const arrConquistas = []
+//     for(i=0; i<nomeConquistas.length; i++) {
+//       const conquistas = new Object;      
+//       conquistas.nomeConquista = nomeConquistas[i];
+//       conquistas.dataConquista = dataConquistas[i];
+//       conquistas.idConquista = idConquistas[i];
+//       arrConquistas.push(conquistas)
+//     }
+//     console.log(arrConquistas)
 }
 
 main()

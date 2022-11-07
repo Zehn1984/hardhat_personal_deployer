@@ -1,6 +1,7 @@
 const hre = require("hardhat");
 const fs = require('fs');
 const axios = require("axios");
+require('dotenv').config();
 
 const getAchievements = async () => {
   const response = await axios.get("http://localhost:3000/Conquistas")
@@ -35,7 +36,6 @@ async function main() {
   let maxTry = 3
   let multiply = 1;
 
-  const txHashConquista = []
   const conquistas = await getAchievements();
 
   const nomeConquistaArr = [];
@@ -55,6 +55,10 @@ async function main() {
   dataConquistaArray.push(JSON.stringify(dataConquistaArr))
   idConquistaArray.push(JSON.stringify(idConquistaArr))
 
+  const txHashConquista = []
+  const blockNumberConquista = []
+  const dataCriadoBlockchain = []
+
   for(let i = 0; i < nomeConquistaArray.length && maxTry; i++) {
 
     const nomeConquista = nomeConquistaArray[i];
@@ -66,18 +70,24 @@ async function main() {
           const gravarConquista = await token.adicionarConquistaHistorico(nomeConquista, dataConquista, idConquista);
           const conquistaDeployada = await gravarConquista.wait()
           txHashConquista.push(conquistaDeployada.transactionHash)
+          blockNumberConquista.push(conquistaDeployada.blockNumber)
           console.log(txHashConquista[i])
+          console.log(blockNumberConquista[i])
+          const provider = new ethers.providers.JsonRpcProvider(process.env.MATIC_TESTNET_ALCHEMY_RPC_URL)
+          const blocoMineirado = await provider.getBlock(blockNumberConquista[i])
+          dataCriadoBlockchain.push(new Date(blocoMineirado.timestamp * 1000))
+          console.log(dataCriadoBlockchain[i])
+          
         } catch (err) {
           console.log(err)
           multiply = multiply * 1.50;
           maxTry--;
         }
       } else {
-        i = nomeConquistaArr.length + 1 
+        i = nomeConquistaArray.length + 1 
       }
     }, 1000 * i * multiply)
   }
-
   console.log("TxHash das conquistas abaixo:")
 }
 
