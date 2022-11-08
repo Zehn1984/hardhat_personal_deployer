@@ -30,36 +30,29 @@ async function main() {
     }
   });
 
-  owner_wallet = await token.owner();
-  console.log("Owner Wallet:" + owner_wallet);
+  const ownerWallet = await token.owner();
+  console.log("Owner Wallet:" + ownerWallet);
 
-  await token.safeMint(owner_wallet);
+  await token.safeMint(ownerWallet);
 
   let maxTry = 3
   let multiply = 1;
 
   const conquistas = await getAchievements();
 
-  const nomeConquistaArr = [];
-  const dataConquistaArr = [];
-  const idConquistaArr = [];
+  const [nomeConquistaArr, dataConquistaArr, idConquistaArr, nomeConquistaArray, dataConquistaArray, idConquistaArray] = [[], [], [], [], [], []]
+
   conquistas.map((element) => {
     nomeConquistaArr.push(element.nomeConquista);
     dataConquistaArr.push(element.createdAt);
     idConquistaArr.push(element.id.toString());
   });
 
-  const nomeConquistaArray = []
-  const dataConquistaArray = []
-  const idConquistaArray = []
-
   nomeConquistaArray.push(JSON.stringify(nomeConquistaArr))
   dataConquistaArray.push(JSON.stringify(dataConquistaArr))
   idConquistaArray.push(JSON.stringify(idConquistaArr))
 
-  const txHashConquista = []
-  const blockNumberConquista = []
-  const dataCriadoBlockchain = []
+  const [txHashConquista, blockNumberConquista, dataCriadoBlockchain] = [[], [], []]
 
   for(let i = 0; i < nomeConquistaArray.length && maxTry; i++) {
 

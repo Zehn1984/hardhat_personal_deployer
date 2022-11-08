@@ -53,11 +53,12 @@ async function main() {
       const conquistas = new Object;      
       conquistas.nomeConquista = nomeConquistaArr[i];
       conquistas.dataConquista = dataConquistaArr[i];
-      conquistas.idConquista = idConquistaArr[i];
+      conquistas.idConquista = parseInt(idConquistaArr[i]);
       conquistasArr.push(conquistas)
     }
 
     console.log(conquistasArr)
+    // return conquistasArr
 
 }
 

@@ -12,27 +12,27 @@ const main = async () => {
 
   console.log(conq)
 
-  const nomeConquistaArr = [];
-  const dataConquistaArr = [];
-  const idConquistaArr = [];
-  conq.map((element) => {
-    nomeConquistaArr.push(element.nomeConquista);
-    dataConquistaArr.push(element.createdAt);
-    idConquistaArr.push(element.id.toString());
-  });
+  // const nomeConquistaArr = [];
+  // const dataConquistaArr = [];
+  // const idConquistaArr = [];
+  // conq.map((element) => {
+  //   nomeConquistaArr.push(element.nomeConquista);
+  //   dataConquistaArr.push(element.createdAt);
+  //   idConquistaArr.push(element.id.toString());
+  // });
 
-  const nomeConquistaArray = []
-  const dataConquistaArray = []
-  const idConquistaArray = []
+  // const nomeConquistaArray = []
+  // const dataConquistaArray = []
+  // const idConquistaArray = []
 
-  nomeConquistaArray.push(JSON.stringify(nomeConquistaArr))
-  dataConquistaArray.push(JSON.stringify(dataConquistaArr))
-  idConquistaArray.push(JSON.stringify(idConquistaArr))
+  // nomeConquistaArray.push(JSON.stringify(nomeConquistaArr))
+  // dataConquistaArray.push(JSON.stringify(dataConquistaArr))
+  // idConquistaArray.push(JSON.stringify(idConquistaArr))
 
-  console.log(nomeConquistaArray)
-  console.log(dataConquistaArray)
-  console.log(idConquistaArray)
-  console.log(nomeConquistaArray.length)
+  // console.log(nomeConquistaArray)
+  // console.log(dataConquistaArray)
+  // console.log(idConquistaArray)
+  // console.log(nomeConquistaArray.length)
 
 }
 main()
