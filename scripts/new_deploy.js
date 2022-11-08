@@ -3,14 +3,7 @@ const fs = require('fs');
 const axios = require("axios");
 require('dotenv').config();
 
-const getAchievements = async () => {
-  const response = await axios.get("http://localhost:3000/Conquistas")
-  const conquistasDb = await response.data
-  console.log(response.status, "Quantidade de conquistas " + conquistasDb.length)
-  return conquistasDb
-};
-
-async function main() {
+export async function main(conquistas) {
 
   const provider = new ethers.providers.JsonRpcProvider(process.env.MATIC_TESTNET_ALCHEMY_RPC_URL)
   const TOKEN = await hre.ethers.getContractFactory("CarteirinhaV2");
@@ -28,8 +21,6 @@ async function main() {
   const ownerWallet = await token.owner();
   console.log("Owner Wallet:" + ownerWallet);
   await token.safeMint(ownerWallet);
-
-  const conquistas = await getAchievements();
 
   let [nomeConquistaArr, dataConquistaArr, idConquistaArr] = [[], [], []]
 
@@ -59,8 +50,13 @@ async function main() {
       dataConquista: dataCriadoBlockchain,
       txHashConquista 
     })
+  const data = await response.data
     console.log(await response.data)
-    return await response.data
+
+  return {
+    response: response,
+    data: data
+  }
 }
 
 // We recommend this pattern to be able to use async/await everywhere
