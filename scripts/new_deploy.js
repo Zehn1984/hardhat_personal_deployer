@@ -56,11 +56,11 @@ async function main() {
 
   const response = await axios.patch("http://localhost:3000/Conquistas",
     {
-      data: { dataConquista: dataCriadoBlockchain, txHashConquista },
-      headers: { "Content-Type": "application/json" }
+      dataConquista: dataCriadoBlockchain,
+      txHashConquista 
     })
+    console.log(await response.data)
     return await response.data
-
 }
 
 // We recommend this pattern to be able to use async/await everywhere
