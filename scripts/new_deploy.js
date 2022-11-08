@@ -1,9 +1,10 @@
 const hre = require("hardhat");
 const fs = require('fs');
 const axios = require("axios");
+const ethers = require("ethers")
 require('dotenv').config();
 
-export async function main(conquistas) {
+export async function main(conquistas, tokenByUser) {
 
   const provider = new ethers.providers.JsonRpcProvider(process.env.MATIC_TESTNET_ALCHEMY_RPC_URL)
   const TOKEN = await hre.ethers.getContractFactory("CarteirinhaV2");
@@ -45,11 +46,17 @@ export async function main(conquistas) {
   console.log(blockNumberConquista)
   console.log(dataCriadoBlockchain)
 
-  const response = await axios.patch("http://localhost:3000/Conquistas",
+  const response = await axios.patch(`http://localhost:3000/Conquistas`,
     {
       dataConquista: dataCriadoBlockchain,
       txHashConquista 
-    })
+    },
+    {
+      headers: {
+        Authorization: tokenByUser
+      }
+    }
+    )
   const data = await response.data
     console.log(await response.data)
 
@@ -61,7 +68,7 @@ export async function main(conquistas) {
 
 // We recommend this pattern to be able to use async/await everywhere
 // and properly handle errors.
-main().catch((error) => {
-  console.error(error);
-  process.exitCode = 1;
-});
+// main().catch((error) => {
+//   console.error(error);
+//   process.exitCode = 1;
+// });
