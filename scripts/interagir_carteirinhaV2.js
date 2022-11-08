@@ -1,9 +1,8 @@
 require("@nomiclabs/hardhat-ethers");
 require("dotenv").config();
 var fs = require('fs');
-//const util = require('util');
 var ethers = require('ethers');
-const { id } = require("ethers/lib/utils");
+const e = require("express");
 const fsPromises = fs.promises;
 
 // const ABI_FILE_PATH = 'artifacts/contracts/CarteirinhaNFT.sol/CarteirinhaNFT.json';
@@ -31,42 +30,35 @@ async function main() {
 
     // criando objeto do contrato para executar as funcoes do mesmo
     const { PRIVATE_KEY } = process.env;
-    let signer = new ethers.Wallet(PRIVATE_KEY, provider);
+    const signer = new ethers.Wallet(PRIVATE_KEY, provider);
     const last_contract_deployed_address = await getLastContractDeployedAddress();
     const token = new ethers.Contract(last_contract_deployed_address, abi, signer);
 
     const response = await token.consultarHistorico();
 
     //console.log(JSON.parse(response[0].nomeConquista))
-    console.log(response[0].nomeConquista)
+    let [nomeConquistaArr, dataConquistaArr, idConquistaArr] = [[], [], []]
+    response.map((element) => {
+      let {nomeConquista, dataConquista, idConquista} = element
+      nomeConquistaArr.push(JSON.parse(nomeConquista))
+      dataConquistaArr.push(JSON.parse(dataConquista))
+      idConquistaArr.push(JSON.parse(idConquista))
+    });
+    nomeConquistaArr = nomeConquistaArr.flat()
+    dataConquistaArr = dataConquistaArr.flat()
+    idConquistaArr = idConquistaArr.flat()
 
+    const conquistasArr = []
+    for(i=0; i<nomeConquistaArr.length; i++) {
+      const conquistas = new Object;      
+      conquistas.nomeConquista = nomeConquistaArr[i];
+      conquistas.dataConquista = dataConquistaArr[i];
+      conquistas.idConquista = idConquistaArr[i];
+      conquistasArr.push(conquistas)
+    }
 
-//     // Trata a string capturada do contrato para ficar no padrao JSON para ser utilizada no backend/DB
-//     async function trataConquista(tipoConquista) {
-//       const ConquistaArrayStringSplit = await (response[0][tipoConquista]).split("-");
-//       const ConquistaArr = [];
-//       for(i=0; i<ConquistaArrayStringSplit.length; i++) {
-//         ConquistaArr.push((ConquistaArrayStringSplit[i].replace("[","").replace("]","")).split(","));
-//       }
-//       for(i=0; i<ConquistaArr.length-1; i++) {
-//         ConquistaArr2 = ConquistaArr[i].concat(ConquistaArr[i+1])
-//       }
-//       return ConquistaArr2;
-//     }
+    console.log(conquistasArr)
 
-//     const nomeConquistas = await trataConquista("nomeConquista");
-//     const dataConquistas = await trataConquista("dataConquista");
-//     const idConquistas = await trataConquista("idConquista");
-
-//     const arrConquistas = []
-//     for(i=0; i<nomeConquistas.length; i++) {
-//       const conquistas = new Object;      
-//       conquistas.nomeConquista = nomeConquistas[i];
-//       conquistas.dataConquista = dataConquistas[i];
-//       conquistas.idConquista = idConquistas[i];
-//       arrConquistas.push(conquistas)
-//     }
-//     console.log(arrConquistas)
 }
 
 main()

@@ -10,6 +10,8 @@ const main = async () => {
 
   const conq = await getAchievements();
 
+  console.log(conq)
+
   const nomeConquistaArr = [];
   const dataConquistaArr = [];
   const idConquistaArr = [];
