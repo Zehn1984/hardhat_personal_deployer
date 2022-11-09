@@ -37,7 +37,7 @@ export class AppService {
 
   async getConquistas(userId: number) {
     try {
-      const conquistas = await this.httpService.axiosRef.get(`http://localhost:3000/Conquistas/user/${userId}`);
+      const conquistas = await this.httpService.axiosRef.get(`http://ifdot.com.br:3000/Conquistas/user/${userId}`);
       const data: Conquistas[] = await conquistas.data
       return data
     } catch (err) {

@@ -46,7 +46,7 @@ export async function main(conquistas, tokenByUser) {
   console.log(blockNumberConquista)
   console.log(dataCriadoBlockchain)
 
-  const response = await axios.patch(`http://localhost:3000/Conquistas`,
+  const response = await axios.patch(`http://ifdot.com.br:3000/Conquistas`,
     {
       dataConquista: dataCriadoBlockchain,
       txHashConquista 
