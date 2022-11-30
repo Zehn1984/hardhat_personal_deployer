@@ -16,25 +16,6 @@ contract CarteirinhaNFT is ERC721, ERC721Enumerable, Pausable, Ownable {
 
     constructor() ERC721("CarteirinhaNFT", "CNFT") {}
 
-    // Mapping owner address to Historico[]
-    mapping(address => Historico[]) private _historico;
-    // creates an object array for dinamic historical data
-    struct Historico {
-        string nomeConquista;
-        string dataConquista;
-        string idConquista;     
-    }
-
-    Historico[] public historico;
-
-    function adicionarConquistaHistorico(string memory nomeConquista_, string memory dataConquista_, string memory idConquista_) public onlyOwner {
-        historico.push(Historico(nomeConquista_, dataConquista_, idConquista_));
-    }
-
-    function consultarHistorico() public view returns(Historico[] memory) {
-        return historico;
-    }
-
     function pause() public onlyOwner {
         _pause();
     }
