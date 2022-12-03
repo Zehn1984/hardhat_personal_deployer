@@ -17,14 +17,20 @@ module.exports = {
     mumbai: {
       url: process.env.MATIC_TESTNET_ALCHEMY_RPC_URL,
       accounts: [process.env.PRIVATE_KEY]
-    },        
+    },
+    // Matic Testnet
+    bsc: {
+      url: process.env.BSC_TESTNET_RPC_URL,
+      accounts: [process.env.PRIVATE_KEY]
+    },
+
   },
   etherscan: {
     // eh a mesma key para mainnet e testnet
-    apiKey: process.env.POLYGONSCAN_API_KEY
+    apiKey: process.env.BSCSCAN_API_KEY
   },
   solidity: {
-    version: "0.8.4",
+    version: "0.8.17",
     settings: {
       optimizer: {
         enabled: true,

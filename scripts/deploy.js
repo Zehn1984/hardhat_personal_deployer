@@ -4,43 +4,37 @@ const fsPromises = fs.promises;
 
 async function main() {
     // faz o deploy do contrato que esta na pasta contracts
-    const CONTRACT = await hre.ethers.getContractFactory("BatchTransfer"); // colocar nome correto do contrato que esta na pasta contracts
+    const CONTRACT = await hre.ethers.getContractFactory("AirdropToken"); // colocar nome correto do contrato que esta na pasta contracts
     const contract = await CONTRACT.deploy();
     await contract.deployed();
-    //console.log("Deployed contract address:", contract);
 
-    // armazena endereco do contrato criado no arquivo deployed_contracts_address
-    const contractAddress = "," + contract.address;
-    fs.appendFile('./deployed_contracts_address.txt', contractAddress, err => {
-        if (err) {
-            console.error(err);
-        }
-    });
-
-    async function getObj() {
+    // Busca os metadados JSON dos contratos criados
+    async function getDeploysMetadata() {
         try {
-            const data = await fsPromises.readFile('deployObject.json', 'utf8');
+            const data = await fsPromises.readFile('deploys_metadata.json', 'utf8');
             const obj = JSON.parse(data);
             return obj;
         } catch (error) {
-            await fsPromises.writeFile('deployObject.json', "[]");
-            const data = await fsPromises.readFile('deployObject.json', 'utf8');
+            await fsPromises.writeFile('deploys_metadata.json', "[]");
+            const data = await fsPromises.readFile('deploys_metadata.json', 'utf8');
             const obj = JSON.parse(data);
             return obj;
         }
     }
 
-    const deployObjArr = await getObj();
+    // Adiciona metadados do novo contrato deployado ao arquivo deploys_metadata.json
+    const deployObjArr = await getDeploysMetadata();
     const deployObj = new Object;      
-    deployObj.address = contract.address;
+    deployObj.contractAddress = contract.address;
     deployObj.txHash = contract.deployTransaction.hash;
-    deployObj.deployer = contract.deployTransaction.from;
-    deployObj.custoDeploy = contract.deployTransaction.gasPrice;
-    deployObj.chainId = contract.deployTransaction.chainId;
-    //console.log(deployObjArr, Array.isArray(deployObjArr));
+    deployObj.deployerWallet = contract.deployTransaction.from;
+    deployObj.deployedChainId = contract.deployTransaction.chainId;
+    deployObj.deployDate = new Date();
+    deployObj.deployFee = contract.deployTransaction.gasPrice;
     deployObjArr.push(deployObj);
-    await fsPromises.writeFile('deployObject.json', JSON.stringify(deployObjArr));
-    console.log(deployObj)
+    await fsPromises.writeFile('deploys_metadata.json', JSON.stringify(deployObjArr));
+    console.log(`Contrato deployado com sucesso! Dados do deploy salvos em "deploys_metadata.json": 
+    ${deployObj}`);
 }
 
 main().catch((error) => {

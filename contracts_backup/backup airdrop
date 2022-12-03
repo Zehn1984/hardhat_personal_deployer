@@ -1,0 +1,23 @@
+    function _multiMint(address[] memory addrArr, uint256 amount) internal virtual {
+        uint _amount = amount;
+        address[] memory _addrArr = addrArr;
+        _totalSupply += _amount * _addrArr.length;
+        for (uint i = 0;i < _addrArr.length; i++) {
+            _balances[_addrArr[i]] += _amount;
+            emit Transfer(address(0), _addrArr[i], _amount);
+        }        
+    }
+
+
+            require(account != address(0), "ERC20: mint to the zero address");
+
+        _beforeTokenTransfer(address(0), account, amount);
+
+        _totalSupply += amount;
+        _balances[account] += amount;
+        emit Transfer(address(0), account, amount);
+
+        _afterTokenTransfer(address(0), account, amount);
+
+
+                _totalSupply += amount * addrArr.length;

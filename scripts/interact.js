@@ -4,8 +4,8 @@ var fs = require('fs');
 var ethers = require('ethers')
 const fsPromises = fs.promises;
 
-const ABI_FILE_PATH = 'artifacts/contracts/CarteirinhaNFT.sol/CarteirinhaNFT.json';
-const DEPLOYED_CONTRACT_ADDRESS = '0x622d507143c2028B9b97f704027ac81B99c96634';
+const ABI_FILE_PATH = 'artifacts/contracts/Airdrop.sol/AirdropToken.json';
+const DEPLOYED_CONTRACT_ADDRESS = '0xFC3FBFf916BBD9F6df61868820665f0397F17598';
 async function getAbi() { 
   const data = await fsPromises.readFile(ABI_FILE_PATH, 'utf8');
   const abi = JSON.parse(data)['abi'];
@@ -14,18 +14,16 @@ async function getAbi() {
 }
 
 async function main() {
-    let provider = ethers.getDefaultProvider(process.env.MATIC_MAINNET_ALCHEMY_RPC_URL);
+    let provider = ethers.getDefaultProvider(process.env.BSC_TESTNET_RPC_URL );
     const abi = await getAbi()
     const { PRIVATE_KEY } = process.env;
     let signer = new ethers.Wallet(PRIVATE_KEY, provider);
     const contract = new ethers.Contract(DEPLOYED_CONTRACT_ADDRESS, abi, signer);
 
-    let transacao = await contract.adicionarConquistaHistorico('consegui', '230822', '3');
+    let transacao = await contract._multiMint();
     const transacaoObj = await transacao.wait();
     const hashTransacao = transacaoObj.transactionHash;
     console.log("Comprovante da transacao: " + hashTransacao)
-    const response = await contract.consultarHistorico();
-    console.log(response);
 }
 
 main()
