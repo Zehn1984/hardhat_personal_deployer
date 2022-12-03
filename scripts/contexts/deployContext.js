@@ -38,8 +38,7 @@ async function deployContract(tokenName) {
         return deployObj;
         
     } catch (error) {
-        console.error(error)
-        process.exitCode = 1;
+        return error;
     }
 }
 
