@@ -4,7 +4,9 @@ require("@nomiclabs/hardhat-etherscan");
 require("@nomiclabs/hardhat-waffle");
 
 module.exports = {
+
   defaultNetwork: "mumbai",
+
   networks: {
     hardhat: {
     },
@@ -18,17 +20,19 @@ module.exports = {
       url: process.env.MATIC_TESTNET_ALCHEMY_RPC_URL,
       accounts: [process.env.PRIVATE_KEY]
     },
-    // Matic Testnet
+    // BSC Mainnet
     bsc: {
       url: process.env.BSC_TESTNET_RPC_URL,
       accounts: [process.env.PRIVATE_KEY]
-    },
+    }
+  },
 
-  },
   etherscan: {
-    // eh a mesma key para mainnet e testnet
-    apiKey: process.env.BSCSCAN_API_KEY
+    // Mesma key para mainnet e testnet
+    // apiKey: process.env.BSCSCAN_API_KEY
+    apiKey: process.env.POLYGONSCAN_API_KEY
   },
+
   solidity: {
     version: "0.8.17",
     settings: {
@@ -37,5 +41,6 @@ module.exports = {
         runs: 200
       }
     }
-  },
+  }
+  
 }
