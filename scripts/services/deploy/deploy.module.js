@@ -1,5 +1,5 @@
-const deployContract = require("./contexts/deployContext.js");
-const getDeployMetadata = require("./contexts/getDeployMetadataContext.js");
+const deployContract = require("./deploy.service.js");
+const getDeployMetadata = require("./helpers/getDeployMetadata.js");
 
 async function main() {
 

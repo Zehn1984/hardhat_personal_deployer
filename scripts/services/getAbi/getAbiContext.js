@@ -1,6 +1,6 @@
 const axios = require('axios');
 const { ethers } = require('ethers');
-const { etherscan } = require("../../hardhat.config.js");
+const { etherscan } = require("../../../hardhat.config.js");
 
 console.log(etherscan);
 
