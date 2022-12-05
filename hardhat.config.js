@@ -27,10 +27,40 @@ module.exports = {
     }
   },
 
+  // etherscan: {apiKey: process.env.POLYGONSCAN_API_KEY},
+
   etherscan: {
-    // Mesma key para mainnet e testnet
-    // apiKey: process.env.BSCSCAN_API_KEY
-    apiKey: process.env.POLYGONSCAN_API_KEY
+    apiKey: {
+      matic: process.env.POLYGONSCAN_API_KEY,
+      mumbai: process.env.POLYGONSCAN_API_KEY,
+      bsc: process.env.BSCSCAN_API_KEY,
+    },
+    customChains: [
+      {
+        network: "matic",
+        chainId: 137,
+        urls: {
+          apiURL: "https://api.polygonscan.com/api",
+          browserURL: "https://polygonscan.com/"
+        }
+      },
+      {
+        network: "mumbai",
+        chainId: 80001,
+        urls: {
+          apiURL: "https://api-testnet.polygonscan.com/api",
+          browserURL: "https://mumbai.polygonscan.com/"
+        }
+      },
+      {
+        network: "bsc",
+        chainId: 56,
+        urls: {
+          apiURL: "https://api.bscscan.com/api",
+          browserURL: "https://bscscan.com/"
+        }
+      }
+    ]
   },
 
   solidity: {

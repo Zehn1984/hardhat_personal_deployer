@@ -1,0 +1,13 @@
+[
+    {
+        "contractAddress": "0xDceAA2FD8332Ed4eC3131CF26aff2687d385FdC0",
+        "txHash": "0xaf2526306aca11bb479d314faa1d8402e16e7bb09ef698a5349fc354e06801d8",
+        "deployerWallet": "0x9f35A48f96086891aF2Aa633789888268488e4D2",
+        "deployedChainId": 80001,
+        "deployDate": "2022-12-03T13:15:55.757Z",
+        "deployFee": {
+            "type": "BigNumber",
+            "hex": "0x59682f11"
+        }
+    }
+]
