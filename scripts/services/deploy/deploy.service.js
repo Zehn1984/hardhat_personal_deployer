@@ -1,16 +1,17 @@
 const hre = require("hardhat");
-const fs = require('fs');
+const fs = require("fs");
 const fsPromises = fs.promises;
 
-async function deployContract(tokenName, getDeploysMetadata) {
+async function deployContract(tokenName, getJsonMetadata) {
     try {
         // Faz o deploy do contrato que esta na pasta contracts
-        const CONTRACT = await hre.ethers.getContractFactory(tokenName); // colocar nome correto do contrato que esta na pasta contracts
+        const CONTRACT = await hre.ethers.getContractFactory(tokenName);
         const contract = await CONTRACT.deploy();
         await contract.deployed();
-    
+        // Pega os metadados dos deploys ja feitos no passado, chamando a funcao na pasta helpers  
+        const deployObjArr = await getJsonMetadata("deploy_metadata.json");
+
         // Adiciona metadados do novo contrato deployado ao arquivo deploys_metadata.json
-        const deployObjArr = await getDeploysMetadata();
         const deployObj = new Object;
         deployObj.name = tokenName;
         deployObj.contractAddress = contract.address;
