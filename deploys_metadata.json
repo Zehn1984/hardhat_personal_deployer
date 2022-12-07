@@ -1,13 +1,1 @@
-[
-    {
-        "contractAddress": "0xDceAA2FD8332Ed4eC3131CF26aff2687d385FdC0",
-        "txHash": "0xaf2526306aca11bb479d314faa1d8402e16e7bb09ef698a5349fc354e06801d8",
-        "deployerWallet": "0x9f35A48f96086891aF2Aa633789888268488e4D2",
-        "deployedChainId": 80001,
-        "deployDate": "2022-12-03T13:15:55.757Z",
-        "deployFee": {
-            "type": "BigNumber",
-            "hex": "0x59682f11"
-        }
-    }
-]
+[{"name":"AirdropToken","contractAddress":"0xbAc10A41f772CbFa39CAa79E0093c677c703959b","txHash":"0xe572ac2a8efb19d876094227768d09640e11c6f100973473a54914fec8b2e86b","deployerWallet":"0x9f35A48f96086891aF2Aa633789888268488e4D2","deployedChainId":80001,"deployDate":"2022-12-07T19:25:02.866Z","deployFee":{"type":"BigNumber","hex":"0x017c853549"}},{"name":"AirdropToken","contractAddress":"0xe2b284634b1d31cA407F2C69A054601bA5372AC4","txHash":"0x23ccb4429ca1ad24c180176a68e78ba68bc179426e7533eeebe69f18a4038f5e","deployerWallet":"0x9f35A48f96086891aF2Aa633789888268488e4D2","deployedChainId":80001,"deployDate":"2022-12-07T19:30:05.065Z","deployFee":{"type":"BigNumber","hex":"0xcf27168d"}}]

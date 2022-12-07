@@ -9,7 +9,7 @@ async function deployContract(tokenName, getJsonMetadata) {
         const contract = await CONTRACT.deploy();
         await contract.deployed();
         // Pega os metadados dos deploys ja feitos no passado, chamando a funcao na pasta helpers  
-        const deployObjArr = await getJsonMetadata("deploy_metadata.json");
+        const deployObjArr = await getJsonMetadata("deploys_metadata.json");
 
         // Adiciona metadados do novo contrato deployado ao arquivo deploys_metadata.json
         const deployObj = new Object;
