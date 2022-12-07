@@ -1,9 +1,9 @@
 const axios = require('axios');
-const { etherscan } = require("../../../hardhat.config.js");
+const { networks, etherscan } = require("../../../hardhat.config.js");
 
 // Retorna a ABI de qualquer contrato das redes que estao cadastradas no hardhat.config.js
 async function getAbi(contractAddress, chainId) {
-    // console.log(etherscan)
+    // console.log(networks)
     etherscan.customChains.map((element) => {     
         if(element.chainId === chainId) {
             apiUrl = element.urls.apiURL;
@@ -17,11 +17,13 @@ async function getAbi(contractAddress, chainId) {
     const response = await axios.get(url);
     const abi = JSON.parse(response.data.result);
     // console.log(abi);
+    chainData.rpcUrl = networks[`${chainName}`].url
+    chainData.abi = abi;
     
-    return abi;
+    return chainData;
 
 };
 
 module.exports = getAbi;
 
-//getAbi("0xDceAA2FD8332Ed4eC3131CF26aff2687d385FdC0", 80001);
+// getAbi("0xDceAA2FD8332Ed4eC3131CF26aff2687d385FdC0", 80001);

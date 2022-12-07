@@ -1,5 +1,5 @@
 const deployContract = require("./deploy.service.js");
-const getDeployMetadata = require("./helpers/getDeployMetadata.js");
+const getDeployMetadata = require("./helpers/getJsonMetadata.js");
 
 async function main() {
 
