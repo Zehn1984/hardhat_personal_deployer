@@ -1,4 +1,4 @@
-const getAbi = require("./getAbi.service.js");
+const getAbi = require("../helpers/getAbi.js");
 require("@nomiclabs/hardhat-ethers");
 require("dotenv").config();
 var ethers = require('ethers')
