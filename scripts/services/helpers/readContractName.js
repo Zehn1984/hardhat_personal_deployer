@@ -1,12 +1,13 @@
 const fs = require('fs')
 fsPromises = fs.promises;
-const files = fs.readdirSync('contracts');
 
 async function readContractName() {
     let contractName = "";
+    const files = fs.readdirSync('contracts'); // Le os nomes dos arquivos da pasta contracts e guarda na array files
     const contractFileName = files[0];
     const directoryPath = `contracts/${contractFileName}`;
     const data = await fsPromises.readFile(directoryPath, 'utf8');
+    // faz tratamento de string para filtrar nome do contrato
     const dataSplitted = data.split(" ");
     dataSplitted.map((element, i) => {
         if (element === "constructor()") {
